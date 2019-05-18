@@ -96,7 +96,7 @@ function encode(){
   l[0][2] = btoa(t);
   var str = "[";
   for(var i = 0; i <= l.length-1; i++){
-	   str+= "['" + btoa(l[i][0]) + "','" + btoa(l[i][1]) + "','" + btoa(l[i][2]) + "'],";
+	   str+= '["' + btoa(l[i][0]) + '","' + btoa(l[i][1]) + '","' + btoa(l[i][2]) + '"],';
    }
   str = str.slice(0, str.length - 1);
   str += "]";
