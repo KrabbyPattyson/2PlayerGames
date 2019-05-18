@@ -100,5 +100,5 @@ function encode(){
    }
   str = str.slice(0, str.length - 1);
   str += "]";
-  document.getElementById("link").innerText = wind + "?l=" + str + ";t=''" + btoa(t) + "';";
+  document.getElementById("link").innerText = wind + "?l=" + str + ";t='" + btoa(t) + "';";
 }
