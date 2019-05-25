@@ -35,7 +35,7 @@ var param = window.location.href;
 if(param.indexOf("?") > -1){ //Check if there were any previous marks
   param = param.split("?");
   wind = param[0];
-  param = param[1];
+  param = atob(param[1]);
   while(param.indexOf("%22") > -1){
     param = param.replace("%22",'"');
   }
@@ -92,11 +92,11 @@ cnv.addEventListener("click",function(e){
 });
 var str;
 function encode(){
-  str = "[";
+  str = "l=[";
 
     for(var i = 0; i <= parseInt(l.length-1); i++){
       str+= "['" + btoa(l[i][0]) + "','" + btoa(l[i][1]) + "','" + btoa(l[i][2]) + "'],";
      }
-  str += "['" + btoa(x) + "','" + btoa(y) + "','" + btoa(t) + "']]";
-  document.getElementById("link").innerText = wind + "?l=" + str + ";t='" + btoa(t) + "';";
+  str += "['" + btoa(x) + "','" + btoa(y) + "','" + btoa(t) + "']];t='" + btoa(t) + "';";
+  document.getElementById("link").innerText = wind + "?" + btoa(str);
 }
