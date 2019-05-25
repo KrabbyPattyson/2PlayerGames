@@ -9,12 +9,14 @@ ctx.fillRect(0, 400, 600, 2);
 
 //Make a function to mark x's and o's
 function mark(locX, locY, type){
-  if(type === 0){ // O
+  console.log("Marking: "+locX+" "+locY+" "+type);
+  parseInt(type);
+  if(type === 0 || type === "0"){ // O
     ctx.beginPath();
     ctx.arc(locX, locY, 80, 0, 2 * Math.PI);
     ctx.stroke();
   }
-  else if(type === 1){ // X
+  else if(type === 1 || type === "1"){ // X
     ctx.beginPath();
     ctx.moveTo(locX-80, locY-80);
     ctx.lineTo(locX+80, locY+80);
@@ -28,13 +30,18 @@ function mark(locX, locY, type){
 
 //Clean up URL Parameters
 var t = 0;
-var l = [[],[],[]];
 var wind;
 var param = window.location.href;
 if(param.indexOf("?") > -1){ //Check if there were any previous marks
   param = param.split("?");
   wind = param[0];
   param = param[1];
+  while(param.indexOf("%22") > -1){
+    param = param.replace("%22",'"');
+  }
+  while(param.indexOf("%27") > -1){
+    param = param.replace("%27",'"');
+  }
   eval(param);
 
 
@@ -54,6 +61,7 @@ if(param.indexOf("?") > -1){ //Check if there were any previous marks
 }
 else{
   wind = window.location.href;
+  var l = [];
 }
 
 //Now that the game is set up, we can take input from the player
@@ -61,6 +69,8 @@ var x, y;
 var clickYet = false;
 cnv.addEventListener("click",function(e){
   if(!clickYet){
+    t++;
+    t = t % 2;
   	x = e.clientX - 50;
   	y = e.clientY - 50;
   	x = Math.round(x / 100);
@@ -76,29 +86,17 @@ cnv.addEventListener("click",function(e){
     x*=100;
     y*=100;
     mark(x, y, t);
-    t++;
-    t = t % 2;
     encode();
     clickYet = true;
   }
 });
-
+var str;
 function encode(){
-  if(param.indexOf("?") > -1){
-    for(var i = 1; i <= l.length; i++){
-      l[i][0] = btoa(l[i][0]);
-      l[i][1] = btoa(l[i][1]);
-      l[i][2] = btoa(l[i][2]);
-    }
-  }
-  l[0][0] = btoa(x);
-  l[0][1] = btoa(y);
-  l[0][2] = btoa(t);
-  var str = "[";
-  for(var i = 0; i <= l.length-1; i++){
-	   str+= '["' + btoa(l[i][0]) + '","' + btoa(l[i][1]) + '","' + btoa(l[i][2]) + '"],';
-   }
-  str = str.slice(0, str.length - 1);
-  str += "]";
+  str = "[";
+
+    for(var i = 0; i <= parseInt(l.length-1); i++){
+      str+= "['" + btoa(l[i][0]) + "','" + btoa(l[i][1]) + "','" + btoa(l[i][2]) + "'],";
+     }
+  str += "['" + btoa(x) + "','" + btoa(y) + "','" + btoa(t) + "']]";
   document.getElementById("link").innerText = wind + "?l=" + str + ";t='" + btoa(t) + "';";
 }
