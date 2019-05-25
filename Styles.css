@@ -7,4 +7,6 @@ canvas{
   padding: 8px;
   border: solid 2px #000;
   float:left;
+  margin-bottom: 8px;
+  margin-top: -12px;
 }
