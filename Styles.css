@@ -1,0 +1,10 @@
+canvas{
+  display:inline;
+  float:left;
+}
+
+.header{
+  padding: 8px;
+  border: solid 2px #000;
+  float:left;
+}
