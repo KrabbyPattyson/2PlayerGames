@@ -72,7 +72,7 @@ cnv.addEventListener("click",function(e){
     t++;
     t = t % 2;
   	x = e.clientX - 190 - 50;
-  	y = e.clientY - cnv.offsetTop - 50;
+  	y = e.clientY - 50;
   	x = Math.round(x / 100);
     y = Math.round(y / 100);
     if(x % 2 === 0){
