@@ -71,9 +71,7 @@ cnv.addEventListener("click",function(e){
   if(!clickYet){
     t++;
     t = t % 2;
-    console.log(e.clientX+" "+cnv.offSetTop);
-  	x = e.clientX - cnv.offsetLeft - 50;
-    console.log(x);
+  	x = e.clientX - 190 - 50;
   	y = e.clientY - cnv.offsetTop - 50;
   	x = Math.round(x / 100);
     y = Math.round(y / 100);
