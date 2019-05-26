@@ -71,8 +71,8 @@ cnv.addEventListener("click",function(e){
   if(!clickYet){
     t++;
     t = t % 2;
-  	x = e.clientX - 190 - 50;
-  	y = e.clientY - 50;
+  	x = e.clientX - parseInt(cnv.offsetTop.toString()) - 50;
+  	y = e.clientY - parseInt(cnv.offsetLeft.toString()) - 50;
   	x = Math.round(x / 100);
     y = Math.round(y / 100);
     if(x % 2 === 0){
