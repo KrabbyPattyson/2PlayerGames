@@ -66,13 +66,14 @@ else{
 
 //Now that the game is set up, we can take input from the player
 var x, y;
+var offSetY = document.getElementsByClassName("header")[0].offsetHeight;
 var clickYet = false;
 cnv.addEventListener("click",function(e){
   if(!clickYet){
     t++;
     t = t % 2;
-  	x = e.clientX - parseInt(cnv.offsetTop.toString()) - 50;
-  	y = e.clientY - parseInt(cnv.offsetLeft.toString()) - 50;
+  	x = e.clientX - 50;
+  	y = e.clientY - 50 - offSetY;
   	x = Math.round(x / 100);
     y = Math.round(y / 100);
     if(x % 2 === 0){
